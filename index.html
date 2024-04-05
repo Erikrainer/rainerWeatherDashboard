@@ -1,22 +1,43 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Rainer Weather Dashboard</title>
+
     <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
+
 <body>
+
     <header>
+
         <h1>Rainer Weather Dashboard</h1>    
+
     </header>
+
     <main>
-        <form class="searchCity">
+
+        <form class="cityForm">
+
             <label for="city" class="searchTitle">Search for a City:</label><br>
-            <input type="text" id="city" name="city" value="San Diego"><br><br>
-            <input type="submit" value="Search" class="searchButton">
-          </form>
+
+            <input  placeholder="Enter City here" class="city"/><br><br>
+
+            <button class="searchButton">Search</button>
+
+        </form>
+        <div class= "cityStorage"></div>
     </main>
+
     <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
