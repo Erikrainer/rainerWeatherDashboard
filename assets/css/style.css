@@ -1,0 +1,59 @@
+/* Universal Styles Start Here */
+
+* {
+    box-sizing: border-box;
+}
+
+/* variable Here */
+:root {
+    --backgroundMain: #860021;
+    --backgroundSecondary: #e3e8e4;
+    --mainFont: white;
+    --backgroundButton: #00D7FF; 
+}
+/* Body Styles Universal Here */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--backgroundSecondary);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header Styles Start here */
+header {
+    background-image: linear-gradient(240deg, black, var(--backgroundMain));
+    color: var(--mainFont);
+    padding: .5rem 0 1rem 2rem;
+    text-align: center;
+    font-size: 1vw;
+}
+
+/* Main Styles Start Here */
+.searchCity {
+    padding: .5rem 1rem;
+}
+
+.searchTitle {
+    font-size: 1.5vw;
+    font-weight: 900;
+}
+
+#city {
+    border-width: thin;
+    margin-top: .5rem;
+    width: 15%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 1vw;
+}
+
+.searchButton {
+    border-width: thin;
+    width: 15%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1vw;
+    color: var(--mainFont);
+    background-image: linear-gradient(45deg, black, var(--backgroundMain));
+}
