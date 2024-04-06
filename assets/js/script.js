@@ -10,6 +10,8 @@ let count = 0;
 
 const cityInfo = [];
 
+const cityList = [];
+
 const weatherAppAPIKey = "09616a0a0b08c5d514a5544718008232"
 
 // Finish here the select section
@@ -26,15 +28,9 @@ fetch(url).then(function(response){
 
 }).then(function(data){
     
-    console.log("--------- First request with geolocation --------")
-
-    console.log(data);
-
     const latitude = data[0].lat;
 
     const longitude = data[0].lon;
-
-    console.log(latitude, longitude);
 
     const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherAppAPIKey}`
 
@@ -44,17 +40,31 @@ fetch(url).then(function(response){
 
     }).then(function(data2){
 
-        console.log("--------- Second request with forecase --------")
+        let index = 0;
+// For loop below to set the object of city information creating the localStorage for cityList0 - 4
+        for(let i = 0; i <= 32; i = i + 8){
 
-        console.log(data2);
+            let storageKey = "cityList" + index++;
 
-        for(let i = 0; i < data2.list.length; i++){
+             cityList[i] = {
 
-            console.log(data2.list[i].main.temp)
+                cityName: cityInput.value.trim(),
 
+                todayDate: data2.list[i].dt_txt,
+
+                cityIcon: data2.list[i].weather[0].icon,
+
+                cityTemp: data2.list[i].main.temp,
+
+                cityWind: data2.list[i].wind.speed
+
+                };
+
+                localStorage.setItem(storageKey, JSON.stringify(cityList[i]));
         }
-    })
 
+        cityInput.value = "";
+    })  
 })
 }
 
@@ -87,15 +97,10 @@ searchButton.addEventListener("click", function(event){
     
     for(let i = 0; i < cityInfo.length; i++){
 
-        console.log(cityInfo[i])
-
         cityDisplay.textContent = cityInfo[i].cityName;
 
         cityStorage.appendChild(cityDisplay);
     }
 
-    cityInput.value = "";
-
-    fetchData();
-
+    fetchData(); 
 })
