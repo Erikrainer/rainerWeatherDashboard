@@ -6,6 +6,10 @@ const cityInput = document.querySelector(".city");
 
 const cityStorage = document.querySelector(".cityStorage");
 
+const cityFirstDay = document.querySelector(".firstDay");
+
+const restOfDays = document.querySelector(".restOfDays");
+
 let count = 0;
 
 const cityInfo = [];
@@ -41,6 +45,7 @@ fetch(url).then(function(response){
     }).then(function(data2){
 
         let index = 0;
+
 // For loop below to set the object of city information creating the localStorage for cityList0 - 4
         for(let i = 0; i <= 32; i = i + 8){
 
@@ -56,7 +61,9 @@ fetch(url).then(function(response){
 
                 cityTemp: data2.list[i].main.temp,
 
-                cityWind: data2.list[i].wind.speed
+                cityWind: data2.list[i].wind.speed,
+
+                cityHumidity: data2.list[i].main.humidity
 
                 };
 
@@ -103,4 +110,72 @@ searchButton.addEventListener("click", function(event){
     }
 
     fetchData(); 
+// Error Here
+    // let storageKey = "cityList" + 0;
+
+    // let cityCloset = []
+
+    // cityCloset[0] = JSON.parse(localStorage.getItem(storageKey));
+
+    // console.log(cityCloset[0]);
 })
+
+
+
+
+// Not Working
+// function cityShow(){
+
+
+//     const cityTitle = document.createElement("h2");
+
+//     const cityDate = document.createElement("h2");
+
+//     const cityIcon = document.createElement("i");
+
+//     const cityMainTemp = document.createElement("h3");
+
+//     const cityWindSpeed = document.createElement("h3");
+
+//     const cityHumidity = document.createElement("h3");
+
+//     let cityList = []
+
+//     for(let i = 0; i < 5; i++){
+
+//         let storageKey = "cityList" + i;
+            
+//         cityList[i] = JSON.parse(localStorage.getItem(storageKey));
+
+//         console.log(cityList[i]);
+
+//         cityDate.textContent = cityList[i].todayDate;
+
+//         cityIcon.textContent = cityList[i].cityIcon;
+
+//         cityMainTemp.textContent = cityList[i].cityTemp;
+
+//         cityWindSpeed.textContent = cityList[i].cityWind;
+
+//         cityHumidity.textContent = cityList[i].cityHumidity;
+
+//         console.log(cityTitle.value);
+
+//         if(i === 0){
+//             cityFirstDay.appendChild(cityTitle);
+//             cityFirstDay.appendChild(cityDate);
+//             cityFirstDay.appendChild(cityIcon);
+//             cityFirstDay.appendChild(cityMainTemp);
+//             cityFirstDay.appendChild(cityWindSpeed);
+//             cityFirstDay.appendChild(cityHumidity);
+//         }else {
+//             cityrestOfDays.appendChild(cityTitle);
+//             cityrestOfDays.appendChild(cityDate);
+//             cityrestOfDays.appendChild(cityIcon);
+//             cityrestOfDays.appendChild(cityMainTemp);
+//             cityrestOfDays.appendChild(cityWindSpeed);
+//             cityrestOfDays.appendChild(cityHumidity);
+//         }
+        
+//     }
+// }
