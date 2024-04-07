@@ -12,68 +12,116 @@ const restOfDays = document.querySelector(".restOfDays");
 
 let count = 0;
 
+let container = [];
+
 const cityInfo = [];
 
 const cityList = [];
+
+const cityHero = [];
 
 const weatherAppAPIKey = "09616a0a0b08c5d514a5544718008232"
 
 // Finish here the select section
 
-function fetchData(){
+// function fetchData(){
 
-const city = localStorage.getItem("citySearch");
+// const city = localStorage.getItem("citySearch");
 
-const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherAppAPIKey}`;
+// const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherAppAPIKey}`;
 
-fetch(url).then(function(response){
+// fetch(url).then(function(response){
 
-    return response.json();
+//     return response.json();
 
-}).then(function(data){
+// }).then(function(data){
     
-    const latitude = data[0].lat;
+//     const latitude = data[0].lat;
 
-    const longitude = data[0].lon;
+//     const longitude = data[0].lon;
 
-    const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherAppAPIKey}`
+//     const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherAppAPIKey}`
 
-    fetch(url2).then(function(response2) {
+//     fetch(url2).then(function(response2) {
 
-        return response2.json();
+//         return response2.json();
 
-    }).then(function(data2){
+//     }).then(function(data2){
+
+//         let index = 0;
+
+// // For loop below to set the object of city information creating the localStorage for cityList0 - 4
+//         for(let i = 0; i <= 32; i = i + 8){
+
+//             let storageKey = "cityList" + index++;
+
+//              cityList[i] = {
+
+//                 cityName: cityInput.value.trim(),
+
+//                 todayDate: data2.list[i].dt_txt,
+
+//                 cityIcon: data2.list[i].weather[0].icon,
+
+//                 cityTemp: data2.list[i].main.temp,
+
+//                 cityWind: data2.list[i].wind.speed,
+
+//                 cityHumidity: data2.list[i].main.humidity
+
+//                 };
+
+//                 localStorage.setItem(storageKey, JSON.stringify(cityList[i]));
+//         }
+
+//         console.log("1")
+
+//         cityInput.value = "";
+
+//     })  
+// })
+// }
+
+async function fetchData() {
+    const city = localStorage.getItem("citySearch");
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherAppAPIKey}`;
+
+    try {
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+        
+        const latitude = data[0].lat;
+        const longitude = data[0].lon;
+        
+        const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherAppAPIKey}`;
+        
+        const response2 = await fetch(url2);
+
+        const data2 = await response2.json();
 
         let index = 0;
-
-// For loop below to set the object of city information creating the localStorage for cityList0 - 4
-        for(let i = 0; i <= 32; i = i + 8){
-
+        for (let i = 0; i <= 32; i += 8) {
             let storageKey = "cityList" + index++;
-
-             cityList[i] = {
-
+            cityList[i] = {
                 cityName: cityInput.value.trim(),
-
                 todayDate: data2.list[i].dt_txt,
-
                 cityIcon: data2.list[i].weather[0].icon,
-
                 cityTemp: data2.list[i].main.temp,
-
                 cityWind: data2.list[i].wind.speed,
-
                 cityHumidity: data2.list[i].main.humidity
-
-                };
-
-                localStorage.setItem(storageKey, JSON.stringify(cityList[i]));
+            };
+            localStorage.setItem(storageKey, JSON.stringify(cityList[i]));
         }
 
         cityInput.value = "";
-    })  
-})
+    } catch (error) {
+        console.error('There was a problem with your fetch operation:', error);
+    }
+    cityShow();
 }
+
 
 // function to grab the CitySearch and storage in a localstorage
 searchButton.addEventListener("click", function(event){
@@ -109,73 +157,61 @@ searchButton.addEventListener("click", function(event){
         cityStorage.appendChild(cityDisplay);
     }
 
-    fetchData(); 
-// Error Here
-    // let storageKey = "cityList" + 0;
-
-    // let cityCloset = []
-
-    // cityCloset[0] = JSON.parse(localStorage.getItem(storageKey));
-
-    // console.log(cityCloset[0]);
+    fetchData();
 })
 
-
-
-
-// Not Working
 // function cityShow(){
 
+//     const cityTitleDocument =  document.createElement("h2");
+        
+//     const cityMainTempDocument =  document.createElement("h3");
 
-//     const cityTitle = document.createElement("h2");
+//     const cityWindSpeedDocument =  document.createElement("h3");
 
-//     const cityDate = document.createElement("h2");
+//     const  cityHumidityDocument =  document.createElement("h3");
 
-//     const cityIcon = document.createElement("i");
-
-//     const cityMainTemp = document.createElement("h3");
-
-//     const cityWindSpeed = document.createElement("h3");
-
-//     const cityHumidity = document.createElement("h3");
-
-//     let cityList = []
 
 //     for(let i = 0; i < 5; i++){
 
+//         container[i] = document.createElement("div");
+
 //         let storageKey = "cityList" + i;
-            
-//         cityList[i] = JSON.parse(localStorage.getItem(storageKey));
+        
+//         let cityInformation = JSON.parse(localStorage.getItem(storageKey));
 
-//         console.log(cityList[i]);
+//         console.log(cityInformation);
 
-//         cityDate.textContent = cityList[i].todayDate;
+//         cityTitleDocument.textContent = cityInformation.cityName + " ";
 
-//         cityIcon.textContent = cityList[i].cityIcon;
+//         cityTitleDocument.textContent += cityInformation.todayDate + " ";
 
-//         cityMainTemp.textContent = cityList[i].cityTemp;
+//         cityTitleDocument.textContent += cityInformation.cityIcon;
 
-//         cityWindSpeed.textContent = cityList[i].cityWind;
+//         cityMainTempDocument.textContent = cityInformation.cityTemp;
 
-//         cityHumidity.textContent = cityList[i].cityHumidity;
+//         cityWindSpeedDocument.textContent = cityInformation.cityWind;
 
-//         console.log(cityTitle.value);
+//         cityHumidityDocument.textContent = cityInformation.cityHumidity;
+
+
+//         container[i].appendChild(cityTitleDocument);
+
+//         container[i].appendChild(cityMainTempDocument);
+
+//         container[i].appendChild(cityWindSpeedDocument);
+
+//         container[i].appendChild(cityHumidityDocument);
+
+//         console.log(container[i]);
 
 //         if(i === 0){
-//             cityFirstDay.appendChild(cityTitle);
-//             cityFirstDay.appendChild(cityDate);
-//             cityFirstDay.appendChild(cityIcon);
-//             cityFirstDay.appendChild(cityMainTemp);
-//             cityFirstDay.appendChild(cityWindSpeed);
-//             cityFirstDay.appendChild(cityHumidity);
+
+//             cityFirstDay.appendChild(container[i].cloneNode(true));
+
 //         }else {
-//             cityrestOfDays.appendChild(cityTitle);
-//             cityrestOfDays.appendChild(cityDate);
-//             cityrestOfDays.appendChild(cityIcon);
-//             cityrestOfDays.appendChild(cityMainTemp);
-//             cityrestOfDays.appendChild(cityWindSpeed);
-//             cityrestOfDays.appendChild(cityHumidity);
-//         }
-        
+
+//             restOfDays.appendChild(container[i].cloneNode(true));
+
+//         }     
 //     }
 // }
