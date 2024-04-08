@@ -28,11 +28,14 @@ const weatherIcons = {
 };
 
 const weatherAppAPIKey = "09616a0a0b08c5d514a5544718008232"
-
 if(JSON.parse(localStorage.getItem("count") !== null)){
     cityShow();
+    localStorage.setItem(JSON.stringify("count", count))
 }
-
+if(JSON.parse(localStorage.getItem("count") < 1)){
+    document.querySelector(".hero").style.display = "none";
+}
+// below function to get the data from the API
 async function fetchData() {
     const city = localStorage.getItem("citySearch");
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherAppAPIKey}`;
@@ -72,12 +75,22 @@ async function fetchData() {
     }
     cityShow();
 }
-
+// Finish here the Function to get the API data
 
 // function to grab the CitySearch and storage in a localstorage
 searchButton.addEventListener("click", function(event){
 
     event.preventDefault();
+
+    document.querySelector(".hero").style.display = "block";
+
+    while(cityFirstDay.hasChildNodes() && restOfDays.hasChildNodes()){
+        cityFirstDay.removeChild(cityFirstDay.firstChild);
+        restOfDays.removeChild(restOfDays.firstChild);
+    }
+    while(restOfDays.hasChildNodes()){
+        restOfDays.removeChild(restOfDays.firstChild);
+    }
 
     count = JSON.parse(localStorage.getItem("count"));
 
@@ -132,8 +145,6 @@ function cityShow(){
         
         let cityInformation = JSON.parse(localStorage.getItem(storageKey));
 
-        console.log(cityInformation);
-
         // const todayDate = cityInformation.todayDate.substring(0, 10);
 
         const dateStorage = JSON.stringify(cityInformation.todayDate).substring(1, 11).replace(/-/g, "/");
@@ -167,8 +178,6 @@ function cityShow(){
         container[i].appendChild(cityWindSpeedDocument);
 
         container[i].appendChild(cityHumidityDocument);
-
-        console.log(container[i]);
 
         if(i === 0){
 

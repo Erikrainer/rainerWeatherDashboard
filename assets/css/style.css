@@ -103,6 +103,8 @@ header {
 }
 
 .firstDay{
+    background: linear-gradient(to top, #09203f 0%, #537895 100%);
+    color: white;
     width: 68%;
     font-size: 1vw;
     border: 1px solid black;
