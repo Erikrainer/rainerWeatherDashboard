@@ -96,12 +96,14 @@ header {
     flex-wrap: wrap;
 }
 
+/* Hero it will be the container that contains all the city information including the firstDay and the restOfDays */
 .hero {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: flex;
     flex-wrap: wrap;
 }
 
+/* Just the First day that will display bigger and more visible */
 .firstDay{
     background: linear-gradient(to top, #09203f 0%, #537895 100%);
     color: white;
@@ -111,15 +113,16 @@ header {
     padding: 1rem 2rem;
     margin: 1rem 0;
 }
+
+/* Just the restOfDays that display the 4 days  */
 .restOfDays div{
-    border-width: thin;
     color: white;
     padding: 1rem 1rem;
     display: inline-block;
     height: 100%;
     width: 20%;
     background: linear-gradient(to top, #09203f 0%, #537895 100%);
-    border: 1px solid black;
+    border: thin solid black;
     margin: 1rem;
 
 }
