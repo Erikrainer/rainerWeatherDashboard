@@ -62,7 +62,7 @@ async function fetchData() {
         const data2 = await response2.json();
 
         let index = 0;
-
+        console.log(data2)
         for (let i = 0; i <= 32; i += 8) {
 
             let storageKey = "cityList" + index++;
