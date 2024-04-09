@@ -6,7 +6,9 @@ Module 6 Challenge, even challenge no starter code, first project using API, it 
 
 https://erikrainer.github.io/rainerWeatherDashboard/
 
+![Rainer Weather Dashboard](https://github.com/Erikrainer/rainerWeatherDashboard/assets/160955635/404417c7-6715-4186-9430-5286b6929d5b)
 
+![Screenshot 2024-04-08 211614](https://github.com/Erikrainer/rainerWeatherDashboard/assets/160955635/c22d4874-1bdb-4538-aac1-1633a1c2a1e9)
 
 
 ## Usage
