@@ -190,7 +190,11 @@ function cityShow(){
 
         cityIconDocument.src = iconURL;
 
-        cityMainTempDocument.textContent = "Temp: " + cityInformation.cityTemp + "°F";
+        let tempCelsius = (cityInformation.cityTemp - 32) * 5/9;
+
+        tempCelsius = tempCelsius.toFixed(1);
+
+        cityMainTempDocument.textContent = "Temp: " + cityInformation.cityTemp + "°F / " + tempCelsius + "°C";
 
         cityWindSpeedDocument.textContent = "Wind: " + cityInformation.cityWind + " MPH";
 

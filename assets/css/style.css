@@ -107,7 +107,8 @@ header {
 .firstDay{
     background: linear-gradient(to top, #09203f 0%, #537895 100%);
     color: white;
-    width: 68%;
+    border-radius: 10px;
+    width: 110%;
     font-size: 1vw;
     border: 1px solid black;
     padding: 1rem 2rem;
@@ -117,6 +118,7 @@ header {
 /* Just the restOfDays that display the 4 days  */
 .restOfDays div{
     color: white;
+    border-radius: 10px;
     padding: 1rem 1rem;
     display: inline-block;
     height: 100%;
